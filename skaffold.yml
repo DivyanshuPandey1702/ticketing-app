@@ -1,0 +1,65 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+manifests:
+  rawYaml:
+    - ./infra/k8s*
+build:
+  # local:
+  #   push: false
+  # googleCloudBuild:
+  #   projectId: ticketing-dev-420820
+  artifacts:
+    # - image: us.gcr.io/ticketing-dev-420820/auth
+    - image: chinmay200102/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    # - image: us.gcr.io/ticketing-dev-420820/client
+    - image: chinmay200102/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    # - image: us.gcr.io/ticketing-dev-420820/tickets
+    - image: chinmay200102/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    # - image: us.gcr.io/ticketing-dev-420820/orders
+    - image: chinmay200102/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    # - image: us.gcr.io/ticketing-dev-420820/expiration
+    - image: chinmay200102/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    # - image: us.gcr.io/ticketing-dev-420820/payments
+    - image: chinmay200102/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .

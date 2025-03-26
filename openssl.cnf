@@ -1,0 +1,25 @@
+[ req ]
+default_bits        = 4096
+default_keyfile     = privkey.pem
+distinguished_name  = req_distinguished_name
+req_extensions      = v3_req
+x509_extensions     = v3_ca
+
+[ req_distinguished_name ]
+countryName         = IN
+stateOrProvinceName = MAHARASHTRA
+localityName        = NAGPUR
+organizationName    = ticketing.dev
+commonName          = ticketing.dev
+
+[ v3_req ]
+# Extensions to add to a certificate request
+subjectAltName = @alt_names
+
+[ v3_ca ]
+# Extensions for a self-signed certificate
+subjectAltName = @alt_names
+
+
+[ alt_names ]
+DNS.1 = ticketing.dev
